@@ -231,6 +231,7 @@ def draw_row_of_circles(n, point, color, window):
 
         # Attach the object(s) to the window.
         circle.attach_to(window)
+        window.render(0.5)
 
         # --------------------------------------------------------------
         # Increment x (and in other problems, other variables)
@@ -238,7 +239,7 @@ def draw_row_of_circles(n, point, color, window):
         # --------------------------------------------------------------
         x = x + (radius * 2)
 
-    window.render()
+
 
 
 # ----------------------------------------------------------------------
