@@ -271,11 +271,15 @@ def run_test_draw_lines_from_rectangles():
     rectangle2 = rg.Rectangle(rg.Point(300, 150), rg.Point(400, 175))
     rectangle1.outline_color = 'red'
     rectangle2.outline_color = 'blue'
+    rectangle1.attach_to(window1)
+    rectangle2.attach_to(window1)
     draw_lines_from_rectangles(rectangle1, rectangle2, 5, window1)
 
     rectangle1 = rg.Rectangle(rg.Point(870, 30), rg.Point(750, 100))
     rectangle2 = rg.Rectangle(rg.Point(700, 90), rg.Point(650, 60))
     rectangle2.outline_color = 'green'
+    rectangle1.attach_to(window1)
+    rectangle2.attach_to(window1)
     draw_lines_from_rectangles(rectangle1, rectangle2, 8, window1)
 
     window1.close_on_mouse_click()
@@ -289,6 +293,8 @@ def run_test_draw_lines_from_rectangles():
     rectangle1.outline_color = 'brown'
     rectangle2.outline_color = 'cyan'
     rectangle2.outline_thickness = 10
+    rectangle1.attach_to(window2)
+    rectangle2.attach_to(window2)
     draw_lines_from_rectangles(rectangle1, rectangle2, 11, window2)
 
     window2.close_on_mouse_click()
@@ -331,7 +337,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # Done: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -344,6 +350,41 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    center1 = rectangle1.get_center()
+    center2 = rectangle2.get_center()
+
+    c1 = center1.x
+    c2 = center1.y
+
+    c3 = center2.x
+    c4 = center2.y
+
+    d1 = rectangle1.get_width() / 2
+    d2 = rectangle1.get_height() / 2
+
+
+    for k in range(n):
+
+        p1 = rg.Point(c1, c2)
+        p2 = rg.Point(c3, c4)
+        line = rg.Line(p1, p2)
+        if k % 2 == 0:
+            line.color = rectangle1.outline_color
+        else:line.color = rectangle2.outline_color
+        line.thickness = 5
+        c1 = c1 - d1
+        c2 = c2 + d2
+
+        c3 = c3 - d1
+        c4 = c4 + d2
+
+
+        line.attach_to(window)
+        window.render(0.07)
+
+
+
+
 
 
 # ----------------------------------------------------------------------
